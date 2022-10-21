@@ -5,9 +5,9 @@ go 1.18
 // replace github.com/wailsapp/wails/v2 v2.1.0 => /Users/narixius/go/pkg/mod
 
 require (
-	github.com/sagernet/sing v0.0.0-20220915083342-a8e70a54fea2
-	github.com/sagernet/sing-box v1.0.6
-	github.com/sagernet/sing-dns v0.0.0-20221020030320-4c4e9d98314b
+	github.com/sagernet/sing v0.0.0-20220913004915-27ddefbb8921
+	github.com/sagernet/sing-box v1.0.5
+	github.com/sagernet/sing-dns v0.0.0-20220822023312-3e086b06d666
 	github.com/wailsapp/wails/v2 v2.1.0
 	github.com/xujiajun/nutsdb v0.10.0
 )
@@ -47,7 +47,6 @@ require (
 	github.com/mattn/go-colorable v0.1.11 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/mholt/acmez v1.0.4 // indirect
-	github.com/miekg/dns v1.1.50 // indirect
 	github.com/nxadm/tail v1.4.8 // indirect
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/oschwald/maxminddb-golang v1.10.0 // indirect
