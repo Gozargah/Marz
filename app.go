@@ -37,6 +37,9 @@ func (a *App) RunServer(id string) {
 	doc, _ := db.Query("servers").FindById(id)
 	var s option.Outbound
 	mapstructure.Decode(doc.Get("server_options"), &s)
+	if server.ConnectedId != "" {
+		server.Disconnect()
+	}
 	go server.RunServer(s)
 	server.ConnectedId = id
 }

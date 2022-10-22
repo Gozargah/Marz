@@ -32,5 +32,6 @@ export const parseVmess = (str: string): Partial<typeof VmessSchema> => {
   if (vmessObj.transport.type.toLowerCase() !== 'http') delete vmessObj.transport.host
   vmessObj.server_port = parseInt(vmessObj.server_port)
   vmessObj.alter_id = parseInt(vmessObj.alter_id)
+  if (vmessObj.transport.type === 'tcp') vmessObj.transport.type = 'http'
   return vmessObj
 }
