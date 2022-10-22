@@ -1,4 +1,4 @@
-package backend
+package main
 
 import (
 	"context"
@@ -6,7 +6,6 @@ import (
 	"net/netip"
 	"os"
 	"os/signal"
-	runtimeDebug "runtime/debug"
 	"syscall"
 
 	E "github.com/sagernet/sing/common/exceptions"
@@ -115,7 +114,6 @@ func RunServer() {
 		cancel()
 		fmt.Println(err)
 	}
-	runtimeDebug.FreeOSMemory()
 	for {
 		osSignal := <-osSignals
 		if osSignal == syscall.SIGHUP {

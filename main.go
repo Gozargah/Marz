@@ -28,6 +28,8 @@ func main() {
 		},
 	})
 
+	closeDB()
+
 	if err != nil {
 		println("Error:", err.Error())
 	}

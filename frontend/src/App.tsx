@@ -1,20 +1,29 @@
 import { Typography } from '@mui/material'
-import { Greet } from '../wailsjs/go/main/App'
+import { useCallback, useEffect, useState } from 'react'
+import { GetAllServers } from '../wailsjs/go/main/App'
 import { Navbar } from './components/Navbar'
 import { Outbound } from './components/Outbound'
 
 function App() {
-  function greet() {
-    // Greet(name).then(updateResultText)
-  }
+  const [servers, setServers] = useState<any>(null)
+  const getServers = useCallback(() => {
+    GetAllServers().then((s) => {
+      setServers(s)
+    })
+  }, [])
+  useEffect(() => {
+    getServers()
+  }, [])
 
   return (
     <div className="flex flex-col justify-between h-screen">
       <div>
-        <Navbar />
+        <Navbar onNewServerAdded={getServers} />
         <div className="px-4 mt-2 flex flex-col space-y-3">
-          <Outbound connected />
-          <Outbound />
+          {servers &&
+            servers.map((server: any) => {
+              return <Outbound onDelete={getServers} server={server} key={servers.Id} />
+            })}
         </div>
       </div>
       <Typography variant="body2" textAlign="center" sx={{ pb: 1 }} className="text-gray-400">
