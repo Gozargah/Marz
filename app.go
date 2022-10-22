@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 
+	"github.com/gozargah/marz/server"
 	"github.com/sagernet/sing-box/option"
 )
 
@@ -29,4 +30,8 @@ func (a *App) AddServer(serverNames string, server option.Outbound) {
 
 func (a *App) RemoveServer(serverId string) {
 	RemoveServer(serverId)
+}
+
+func (a *App) RunServer() {
+	server.RunServer()
 }

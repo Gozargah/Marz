@@ -1,24 +1,16 @@
-package main
+package server
 
 import (
 	"context"
 	"fmt"
 	"net/netip"
-	"os"
-	"os/signal"
-	"syscall"
-
-	E "github.com/sagernet/sing/common/exceptions"
 
 	box "github.com/sagernet/sing-box"
-	"github.com/sagernet/sing-box/log"
 	"github.com/sagernet/sing-box/option"
 	dns "github.com/sagernet/sing-dns"
 )
 
 func RunServer() {
-	osSignals := make(chan os.Signal, 1)
-	signal.Notify(osSignals, os.Interrupt, syscall.SIGTERM, syscall.SIGHUP)
 
 	prefix, err := netip.ParsePrefix("172.19.0.1/30")
 	if err != nil {
@@ -114,21 +106,5 @@ func RunServer() {
 		cancel()
 		fmt.Println(err)
 	}
-	for {
-		osSignal := <-osSignals
-		if osSignal == syscall.SIGHUP {
-			if err != nil {
-				log.Error(E.Cause(err, "reload service"))
-				continue
-			}
-		}
-		fmt.Println("asdf")
-		cancel()
-		instance.Close()
-		if osSignal != syscall.SIGHUP {
-			panic("end")
-		}
-		break
-	}
-
+	cancel()
 }

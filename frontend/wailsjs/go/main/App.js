@@ -13,3 +13,7 @@ export function GetAllServers() {
 export function RemoveServer(arg1) {
   return window['go']['main']['App']['RemoveServer'](arg1);
 }
+
+export function RunServer() {
+  return window['go']['main']['App']['RunServer']();
+}

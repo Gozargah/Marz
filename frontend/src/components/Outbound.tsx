@@ -60,7 +60,7 @@ export const Outbound: FC<{ server: Server; onDelete: () => void }> = ({ server,
           onClose={handleClose}
           anchorOrigin={{
             vertical: 'top',
-            horizontal: 'right',
+            horizontal: 'left',
           }}
           transformOrigin={{
             vertical: 'top',
