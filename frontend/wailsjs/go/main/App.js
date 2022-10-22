@@ -6,6 +6,10 @@ export function AddServer(arg1, arg2) {
   return window['go']['main']['App']['AddServer'](arg1, arg2);
 }
 
+export function Disconnect() {
+  return window['go']['main']['App']['Disconnect']();
+}
+
 export function GetAllServers() {
   return window['go']['main']['App']['GetAllServers']();
 }
@@ -14,6 +18,6 @@ export function RemoveServer(arg1) {
   return window['go']['main']['App']['RemoveServer'](arg1);
 }
 
-export function RunServer() {
-  return window['go']['main']['App']['RunServer']();
+export function RunServer(arg1) {
+  return window['go']['main']['App']['RunServer'](arg1);
 }

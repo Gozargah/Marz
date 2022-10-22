@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 	"runtime"
 
+	"github.com/gozargah/marz/server"
 	c "github.com/ostafen/clover"
 	"github.com/sagernet/sing-box/option"
 )
@@ -64,13 +65,15 @@ func GetAllServers() []interface{} {
 	servers := empty
 
 	for _, doc := range docs {
-		todo := &struct {
+		s := &struct {
 			Id            string      `clover:"_id"`
 			Name          string      `clover:"name"`
 			ServerOptions interface{} `clover:"server_options"`
+			Connected     bool
 		}{}
-		doc.Unmarshal(todo)
-		servers = append(servers, todo)
+		doc.Unmarshal(s)
+		s.Connected = s.Id == server.ConnectedId
+		servers = append(servers, s)
 	}
 
 	return servers

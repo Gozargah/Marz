@@ -1,7 +1,7 @@
 import { MoreVert, OutboundOutlined, Sensors, TaskAlt } from '@mui/icons-material'
 import { Button, Card, CardActions, IconButton, Menu, MenuItem, Typography } from '@mui/material'
 import { FC, useState } from 'react'
-import { RemoveServer } from '../../wailsjs/go/main/App'
+import { Disconnect, RemoveServer, RunServer } from '../../wailsjs/go/main/App'
 
 type Server = {
   Id: string
@@ -21,7 +21,7 @@ const findServerAddr = (obj: any): string => {
   return ''
 }
 
-export const Outbound: FC<{ server: Server; onDelete: () => void }> = ({ server, onDelete }) => {
+export const Outbound: FC<{ server: Server; onChange: () => void }> = ({ server, onChange }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -33,8 +33,12 @@ export const Outbound: FC<{ server: Server; onDelete: () => void }> = ({ server,
   const rmServer = () => {
     handleClose()
     RemoveServer(server.Id).finally(() => {
-      onDelete()
+      onChange()
     })
+  }
+  const handleConnect = () => {
+    if (!server.Connected) RunServer(server.Id).finally(onChange)
+    else Disconnect().finally(onChange)
   }
   return (
     <Card className="p-4">
@@ -74,7 +78,7 @@ export const Outbound: FC<{ server: Server; onDelete: () => void }> = ({ server,
       </div>
 
       <CardActions sx={{ p: 0 }} className="flex justify-end">
-        <Button size="small" sx={{ px: 1 }}>
+        <Button size="small" sx={{ px: 1 }} onClick={handleConnect} variant={server.Connected ? 'outlined' : 'text'}>
           {!server.Connected ? 'Connect' : 'Disconnect'}
         </Button>
       </CardActions>

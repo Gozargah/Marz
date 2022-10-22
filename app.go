@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/gozargah/marz/server"
+	"github.com/mitchellh/mapstructure"
 	"github.com/sagernet/sing-box/option"
 )
 
@@ -32,6 +33,14 @@ func (a *App) RemoveServer(serverId string) {
 	RemoveServer(serverId)
 }
 
-func (a *App) RunServer() {
-	server.RunServer()
+func (a *App) RunServer(id string) {
+	doc, _ := db.Query("servers").FindById(id)
+	var s option.Outbound
+	mapstructure.Decode(doc.Get("server_options"), &s)
+	go server.RunServer(s)
+	server.ConnectedId = id
+}
+
+func (a *App) Disconnect() {
+	server.Disconnect()
 }

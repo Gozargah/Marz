@@ -5,6 +5,8 @@ go 1.18
 // replace github.com/wailsapp/wails/v2 v2.1.0 => /Users/narixius/go/pkg/mod
 
 require (
+	github.com/labstack/gommon v0.3.1
+	github.com/mitchellh/mapstructure v1.5.0
 	github.com/ostafen/clover v1.2.0
 	github.com/sagernet/sing-box v1.0.6
 	github.com/sagernet/sing-dns v0.0.0-20220822023312-3e086b06d666
@@ -44,7 +46,6 @@ require (
 	github.com/klauspost/compress v1.12.3 // indirect
 	github.com/klauspost/cpuid/v2 v2.1.0 // indirect
 	github.com/labstack/echo/v4 v4.9.0 // indirect
-	github.com/labstack/gommon v0.3.1 // indirect
 	github.com/leaanthony/go-ansi-parser v1.0.1 // indirect
 	github.com/leaanthony/gosod v1.0.3 // indirect
 	github.com/leaanthony/slicer v1.5.0 // indirect

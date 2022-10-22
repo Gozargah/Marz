@@ -4,8 +4,10 @@ import {option} from '../models';
 
 export function AddServer(arg1:string,arg2:option.Outbound):Promise<void>;
 
+export function Disconnect():Promise<void>;
+
 export function GetAllServers():Promise<Array<any>>;
 
 export function RemoveServer(arg1:string):Promise<void>;
 
-export function RunServer():Promise<void>;
+export function RunServer(arg1:string):Promise<void>;

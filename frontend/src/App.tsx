@@ -22,7 +22,7 @@ function App() {
         <div className="px-4 mt-2 flex flex-col space-y-3">
           {servers &&
             servers.map((server: any) => {
-              return <Outbound onDelete={getServers} server={server} key={servers.Id} />
+              return <Outbound onChange={getServers} server={server} key={servers.Id} />
             })}
         </div>
       </div>
